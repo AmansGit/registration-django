@@ -4,20 +4,45 @@ from django.contrib.auth import login, authenticate
 from .forms import User_RegistrationForm
 
 
-# def signup(request):
-#     if request.method == 'POST':
-#         form = User_RegistrationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             user.refresh_from_db()
-#             username = form.cleaned_data.get('username')
-#             raw_password = form.cleaned_data.get('password1')
-#             user = authenticate(username=user.username, password=raw_password)
-#             login(request, user)
-#             return redirect('home')
-#     else:
-#         form = User_RegistrationForm()
-#     return render(request, 'signup.html', {'form': form})
+def signup(request):
+    if request.method == 'POST':
+    	username = request.POST['email_id']
+    	password = request.POST['password']
+		try:
+			record = User_registration.objects.get(email_id=username, password=password)
+			#print(record)
+			if record is not None:
+				return HttpResponse('thanks for registeration')
+				#return redirect('/logsuccess')
+			else:
+				return HttpResponse('Invalid')
+		except:
+			return HttpResponse('invalid')
+	else:
+		frm = User_RegistrationForm()
+	return render(request,'registration/login.html',{'stu':frm})
+
+		
+
+def login(request):
+	if request.method == 'POST':
+		username = request.POST['email']
+		password = request.POST['passwd']
+		try :
+		#user = auth.authenticate(userid=username,passwd=password)
+			record = User_registration.objects.get(email=username,passwd=password)
+
+			#print(record)
+			if record is not None :
+				return HttpResponse('thanks for register')
+				#return redirect('/logsuccess')
+			else:
+				return HttpResponse('Invalid')
+		except:
+			return HttpResponse('invalid')
+	else:
+		frm = User_RegistrationForm()
+	return render(request,'login.html',{'stu':frm})
 
 
 

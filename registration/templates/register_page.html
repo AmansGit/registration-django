@@ -1,0 +1,72 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<form action="" method="post">
+  {% csrf_token %}
+  			<table border="0" align="center" cellpadding="5" cellspacing="5">
+  				<tr>
+  					<td>
+  						First Name
+  					</td>
+  					<td>
+  						{{ stu.fname }}
+  					</td>
+  				</tr>
+  				<tr>
+  					<td>
+  						Last Name
+  					</td>
+  					<td>
+  						{{ stu.lname }}
+  					</td>
+  				</tr>
+  				<tr>
+  					<td>
+  					Age
+  					</td>
+  					<td>
+  						{{ stu.age }}
+  					</td>
+  				</tr>
+  				<tr>
+  					<td>
+  						Email Id
+  					</td>
+  					<td>
+  						{{ stu.email}}
+  					</td>
+  				</tr>
+  				<tr>
+  					<td>
+  						Unique Id
+  					</td>
+  					<td>
+  						{{ stu.uniqueid }}
+  					</td>
+  				</tr>
+  				<tr>
+  					<td>
+  						Password
+  					</td>
+  					<td>
+  						{{ stu.passwd }}
+  					</td>
+  				</tr>
+          <tr>
+            <td>
+              Verify Password
+            </td>
+            <td>
+              {{ stu.confmpasswd }}
+            </td>
+          </tr>
+  				<tr>
+  					<td colspan="2" align="center">
+  						<button type="submit">Sign Up</button>
+  					</td>
+
+  				</tr>
+  			</table>
+</form>
+		
+{% endblock %}
